@@ -40,7 +40,7 @@ export class AppComponent {
     }
 
     openNew() {
-        this.product = {};
+        this.person = {};
         this.submitted = false;
         this.productDialog = true;
     }

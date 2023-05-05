@@ -13,12 +13,12 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+    <p-table #dt [value]="persons" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
         [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Gerenciar Produtos</h5>
+                <h5 class="p-m-0">Lista de usuários</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Procurar..." />
@@ -31,33 +31,33 @@
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="price">Preço <p-sortIcon field="price"></p-sortIcon></th>
-                <th pSortableColumn="category">Categoria <p-sortIcon field="category"></p-sortIcon></th>
-                <th pSortableColumn="rating">Análise <p-sortIcon field="rating"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th pSortableColumn="price">Data de Nascimento <p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="category">Genero <p-sortIcon field="category"></p-sortIcon></th>
+                <th pSortableColumn="rating">Altura <p-sortIcon field="rating"></p-sortIcon></th>
+                <th pSortableColumn="inventoryStatus">Peso <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th pSortableColumn="inventoryStatus">Notas <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th pSortableColumn="inventoryStatus">Telefone <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th pSortableColumn="inventoryStatus">Atualizar <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-person>
             <tr>
                 <td>
-                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    <p-tableCheckbox [value]="person"></p-tableCheckbox>
                 </td>
-                <td>{{product.name}}</td>
-                <td>{{product.price | currency:'USD'}}</td>
-                <td>{{product.category}}</td>
-                <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
-                <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td>
+                <td>{{person.name}}</td>
+                <td>{{person.born }}</td>
+                <td>{{person.gender}}</td>
+                <td>{{person.height}}</td>
+                <td>{{person.weight}}</td>
+                <td>{{person.notes}}</td>
+                <td>{{person.phone}}</td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
                 </td>
             </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                In total there are {{products ? products.length : 0 }} products.
-            </div>
         </ng-template>
     </p-table>
 </div>
@@ -65,32 +65,36 @@
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
-            <label for="name">Name</label>
-            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small>
+            <label for="name">Nome</label>
+            <input type="text" pInputText id="name" [(ngModel)]="person.name" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !person.name">Name is required.</small>
         </div>
         <div class="p-field">
-            <label for="description">Description</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
+            <label for="description">Data de Nascimento</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="person.born" required rows="3" cols="20"></textarea>
         </div>
 
         <div class="p-field">
-            <label class="p-mb-3">Category</label>
+            <label class="p-mb-3">Genero</label>
             <div class="p-formgrid p-grid">
                 <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category"></p-radioButton>
+                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="person.gender"></p-radioButton>
                     <label for="category1">Accessories</label>
                 </div>
                 <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="product.category"></p-radioButton>
+                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="person.height"></p-radioButton>
                     <label for="category2">Clothing</label>
                 </div>
                 <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="product.category"></p-radioButton>
+                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="person.weight"></p-radioButton>
                     <label for="category3">Electronics</label>
                 </div>
                 <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="product.category"></p-radioButton>
+                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="person.notes"></p-radioButton>
+                    <label for="category4">Fitness</label>
+                </div>
+                <div class="p-field-radiobutton p-col-6">
+                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="person.phone"></p-radioButton>
                     <label for="category4">Fitness</label>
                 </div>
             </div>

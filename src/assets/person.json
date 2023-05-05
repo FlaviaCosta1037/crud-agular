@@ -3,12 +3,12 @@
 		{
 			"id": "1",
 			"name": "Flávia",
-			"born": "Bamboo Watch",
-			"gender": "Product Description",
-			"height": "bamboo-watch.jpg",
+			"born": "07/06/1986",
+			"gender": "Feminino",
+			"height": 1.64,
 			"weight": 65,
-			"notes": "Accessories",
-			"phone": 24
+			"notes": "Teste de notas",
+			"phone": 81997583813
 		}
   ]
 }
