@@ -31,6 +31,8 @@ export class AppComponent {
 
     persons: Person[];
     person: Person;
+    personDialog: boolean;
+    selectedPersons: Person[];
 
     constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService, private personService: PersonService) { }
 
@@ -43,6 +45,7 @@ export class AppComponent {
         this.person = {};
         this.submitted = false;
         this.productDialog = true;
+        this.personDialog = true;
     }
 
     deleteSelectedProducts() {
@@ -58,9 +61,27 @@ export class AppComponent {
         });
     }
 
+    deleteSelectedPerson() {
+        this.confirmationService.confirm({
+            message: 'Tem certeza que deseja deletar este usuário?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.persons = this.persons.filter(val => !this.selectedProducts.includes(val));
+                this.selectedPersons = null;
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Usuário Deletado', life: 3000});
+            }
+        });
+    }
+
     editProduct(product: Product) {
         this.product = {...product};
         this.productDialog = true;
+    }
+
+    editPerson(person: Person) {
+        this.person = {...person};
+        this.personDialog = true;
     }
 
     deleteProduct(product: Product) {
@@ -76,6 +97,20 @@ export class AppComponent {
         });
     }
 
+    deletePerson(person: Person) {
+        this.confirmationService.confirm({
+            message: 'Tem certeza que deseja deletar? ' + person.name + '?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.persons = this.persons.filter(val => val.id !== person.id);
+                this.person = {};
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Usuário Deletado', life: 3000});
+            }
+        });
+    }
+
+
     hideDialog() {
         this.productDialog = false;
         this.submitted = false;
@@ -84,21 +119,40 @@ export class AppComponent {
     saveProduct() {
         this.submitted = true;
 
-        if (this.product.name.trim()) {
-            if (this.product.id) {
-                this.products[this.findIndexById(this.product.id)] = this.product;                
-                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
+        if (this.person.name.trim()) {
+            if (this.person.id) {
+                this.persons[this.findIndexById(this.person.id)] = this.person;                
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Usuário atualizado', life: 3000});
             }
             else {
-                this.product.id = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                this.products.push(this.product);
+                this.person.id = this.createId();
+                this.persons.push(this.person);
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
             }
 
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
+            this.persons = [...this.persons];
+            this.personDialog = false;
+            this.person = {};
+        }
+    }
+
+    savePerson() {
+        this.submitted = true;
+
+        if (this.person.name.trim()) {
+            if (this.person.id) {
+                this.person[this.findIndexById(this.person.id)] = this.person;                
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Usuário atualizado', life: 3000});
+            }
+            else {
+                this.person.id = this.createId();
+                this.persons.push(this.person);
+                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Usuário Criado', life: 3000});
+            }
+
+            this.persons = [...this.products];
+            this.personDialog = false;
+            this.person = {};
         }
     }
 

@@ -31,13 +31,13 @@
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="price">Data de Nascimento <p-sortIcon field="price"></p-sortIcon></th>
-                <th pSortableColumn="category">Genero <p-sortIcon field="category"></p-sortIcon></th>
-                <th pSortableColumn="rating">Altura <p-sortIcon field="rating"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus">Peso <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus">Notas <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus">Telefone <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus">Atualizar <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th pSortableColumn="born">Data de Nascimento <p-sortIcon field="born"></p-sortIcon></th>
+                <th pSortableColumn="gender">Genero <p-sortIcon field="gender"></p-sortIcon></th>
+                <th pSortableColumn="height">Altura <p-sortIcon field="height"></p-sortIcon></th>
+                <th pSortableColumn="weight">Peso <p-sortIcon field="weight"></p-sortIcon></th>
+                <th pSortableColumn="notes">Notas <p-sortIcon field="notes"></p-sortIcon></th>
+                <th pSortableColumn="phone">Telefone <p-sortIcon field="phone"></p-sortIcon></th>
+                <th pSortableColumn="update">Atualizar <p-sortIcon field="update"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -70,8 +70,8 @@
             <small class="p-invalid" *ngIf="submitted && !person.name">Name is required.</small>
         </div>
         <div class="p-field">
-            <label for="description">Data de Nascimento</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="person.born" required rows="3" cols="20"></textarea>
+            <label for="born">Data de Nascimento</label>
+            <textarea id="born" pInputTextarea [(ngModel)]="person.born" required rows="3" cols="20"></textarea>
         </div>
 
         <div class="p-field">
@@ -97,17 +97,6 @@
                     <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="person.phone"></p-radioButton>
                     <label for="category4">Fitness</label>
                 </div>
-            </div>
-        </div>
-
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="price">Price</label>
-                <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-            </div>
-            <div class="p-field p-col">
-                <label for="quantity">Quantity</label>
-                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
             </div>
         </div>
     </ng-template>
