@@ -67,37 +67,33 @@
         <div class="p-field">
             <label for="name">Nome</label>
             <input type="text" pInputText id="name" [(ngModel)]="person.name" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !person.name">Name is required.</small>
+            <small class="p-invalid" *ngIf="submitted && !person.name">Nome é obrigatório.</small>
         </div>
         <div class="p-field">
             <label for="born">Data de Nascimento</label>
-            <textarea id="born" pInputTextarea [(ngModel)]="person.born" required rows="3" cols="20"></textarea>
+            
         </div>
-
         <div class="p-field">
-            <label class="p-mb-3">Genero</label>
-            <div class="p-formgrid p-grid">
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="person.gender"></p-radioButton>
-                    <label for="category1">Accessories</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="person.height"></p-radioButton>
-                    <label for="category2">Clothing</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="person.weight"></p-radioButton>
-                    <label for="category3">Electronics</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="person.notes"></p-radioButton>
-                    <label for="category4">Fitness</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="person.phone"></p-radioButton>
-                    <label for="category4">Fitness</label>
-                </div>
-            </div>
+            <label for="gender">Gênero</label>
+            <input type="text" pInputText id="gender" [(ngModel)]="person.gender" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !person.gender">Gênero é obrigatório.</small>
+        </div>
+        <div class="p-field">
+            <label for="height">Altura</label>
+            <input type="text" pInputText id="height" [(ngModel)]="person.height" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="weight">Peso</label>
+            <input type="text" pInputText id="weight" [(ngModel)]="person.weight" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="notes">Notas do Usuário</label>
+            <textarea id="notes" pInputTextarea [(ngModel)]="person.notes" required rows="3" cols="20"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="phone">Telefone</label>
+            <input type="text" pInputText id="phone" [(ngModel)]="person.phone" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !person.phone">Telefone é obrigatório.</small>
         </div>
     </ng-template>
     

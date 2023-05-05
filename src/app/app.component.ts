@@ -67,7 +67,7 @@ export class AppComponent {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.persons = this.persons.filter(val => !this.selectedProducts.includes(val));
+                this.persons = this.persons.filter(val => !this.selectedPersons.includes(val));
                 this.selectedPersons = null;
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Usuário Deletado', life: 3000});
             }
@@ -83,7 +83,7 @@ export class AppComponent {
         this.person = {...person};
         this.personDialog = true;
     }
-
+    
     deleteProduct(product: Product) {
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete ' + product.name + '?',
@@ -158,8 +158,8 @@ export class AppComponent {
 
     findIndexById(id: string): number {
         let index = -1;
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
+        for (let i = 0; i < this.persons.length; i++) {
+            if (this.persons[i].id === id) {
                 index = i;
                 break;
             }
