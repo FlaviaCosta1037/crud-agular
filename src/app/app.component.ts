@@ -102,6 +102,7 @@ export class AppComponent {
 
   editPerson(person: Person) {
     this.person = { ...person };
+    this.person.born = new Date(this.person.born)
     this.personDialog = true;
   }
 
